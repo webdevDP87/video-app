@@ -11,20 +11,20 @@ type RowProps = {
     request: any;
     slogan: string;
     type?: string;
-    setSelectedMediaX1: any;
-    setIsModalVisible: any;
+    setActiveMedia: any;
+    setActiveMediaType: any;
     setModalPosition: any;
-    setSelectedMediaTypeX: any;
+    setModalVisible: any;
 };
 
 export const Row = (props: RowProps) => {
     const {
         request,
         slogan,
-        setSelectedMediaX1,
-        setIsModalVisible,
+        setActiveMedia,
+        setActiveMediaType,
         setModalPosition,
-        setSelectedMediaTypeX,
+        setModalVisible,
         type
     } = props;
 
@@ -95,7 +95,7 @@ export const Row = (props: RowProps) => {
                                         onMouseOver={() => {
 
                                             if (media) {
-                                                setSelectedMediaX1(media);
+                                                setActiveMedia(media);
 
                                                 let mediaType;
 
@@ -106,7 +106,7 @@ export const Row = (props: RowProps) => {
                                                 }
 
                                                 // console.log(mediaType)
-                                                setSelectedMediaTypeX(mediaType);
+                                                setActiveMediaType(mediaType);
 
                                             }
 
@@ -118,11 +118,11 @@ export const Row = (props: RowProps) => {
                                                     left: boundingRect.left,
                                                     width: boundingRect.width
                                                 });
-                                                setIsModalVisible(true);
+                                                setModalVisible(true);
                                             }
                                         }}
                                         onMouseLeave={() => {
-                                            setIsModalVisible(false);
+                                            setModalVisible(false);
                                         }}
                                         ref={(el) => {
                                             swiperSlideRefs.current[index] = el;

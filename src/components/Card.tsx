@@ -1,32 +1,22 @@
-import { useState } from 'react';
-// import { CardModal } from './CardModal';
 import { NavLink } from 'react-router-dom'
 
 type CardProps = {
-    media: any
+    media: {
+        backdrop_path: string,
+        title: string,
+        name: string,
+    }
 }
 
 export const Card = (props: CardProps) => {
 
     const {media} = props;
-    // const titler2 = media?.title?.replace(/\s/g, "-").toLowerCase()
-    // const titler2 = 'custom-url'
     const mediaURL = media && (media?.title || media?.name)?.replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').toLowerCase();
-
-    const [isMouseOver, setIsMouseOver] = useState<boolean>(false)
-
-    const handleMouseOver = () : void => {
-        setIsMouseOver(true);
-    }
-    const handleMouseLeave = () : void => {
-        setIsMouseOver(false);
-    }
 
     return (
         <>
             
-            {/* <NavLink to={`/watch/${titler2}`} state={{ title: media?.title }} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="card relative"> */}
-            <NavLink to={`/watch/${mediaURL}`} state={{ title: media?.title || media?.name }} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave} className="card relative">
+            <NavLink to={`/watch/${mediaURL}`} state={{ title: media?.title || media?.name }} className="card relative">
 
                 <div className="card__body rounded-md overflow-hidden">
                     <div className="card__poster">
@@ -38,8 +28,6 @@ export const Card = (props: CardProps) => {
                         </div>
                     </div>
                 </div>
-
-                {/* <CardModal isMouseOver={isMouseOver} id={media?.id} type={media?.type} titler={media?.title} title={media?.title} cover={media?.backdrop_path} /> */}
 
             </NavLink>
         </>

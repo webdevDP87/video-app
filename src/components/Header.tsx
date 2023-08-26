@@ -54,7 +54,10 @@ export const Header: React.FC  = () => {
         <>
             <header className={(isSticky ? "bg-neutral-900 " : "") + "fixed left-0 right-0 top-0 py-5 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 bg-gradient-to-b from-[#000000]/50 to-[#000000]/0 z-20 transition-colors duration-500 will-change-[background-color]"}>
                 <div className="flex items-center flex-wrap gap-x-8">
-                    <NavLink to="/" className="flex mr-2">
+                    <NavLink
+                        to="/"
+                        className="flex mr-2"
+                    >
                         <svg className="h-6 w-auto"
                             xmlns="http://www.w3.org/2000/svg"
                             width="2500"
@@ -75,9 +78,14 @@ export const Header: React.FC  = () => {
                                         navItems.map((navItem, index) => {
                                             return (
                                                 <li key={index}>
-                                                    <NavLink to={navItem.url} className={({ isActive, isPending }) =>
-                                                        isPending ? "text-red-500" : isActive ? "active text-white font-bold" : "text-neutral-300 font-medium transition-colors hover:text-neutral-400"
-                                                    } >{navItem.name}</NavLink>
+                                                    <NavLink
+                                                        to={navItem.url}
+                                                        className={
+                                                            ({ isActive, isPending }) => isPending ? "text-red-500" : isActive ? "active text-white font-bold" : "text-neutral-300 font-medium transition-colors hover:text-neutral-400"
+                                                        }
+                                                    >
+                                                        {navItem.name}
+                                                    </NavLink>
                                                 </li>
                                             )
                                         })
@@ -87,7 +95,8 @@ export const Header: React.FC  = () => {
                         )
                     }
                     
-                    <div className="ml-auto">asd</div>
+                    {/* <div className="ml-auto">My account </div> (one day..) */}
+                    
                 </div>
             </header>
         </>

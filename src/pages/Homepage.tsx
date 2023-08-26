@@ -9,36 +9,98 @@ import { SectionHero } from '../components/SectionHero'
 
 export const Homepage: React.FC = () => {
 
-    const [isModalUpscaled, setIsModalUpscaled] = useState<boolean>(false);
-    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-    const [modalPosition, setModalPosition] = useState<any>({
+    const [activeMedia, setActiveMedia] = useState<{title: string, name: string, id: number, genre_ids: number[], backdrop_path: string, overview: string,}>();
+    const [activeMediaType, setActiveMediaType] = useState<string>("");
+    const [modalPosition, setModalPosition] = useState<{top: string, left: string, width: string}>({
         top: '50vh',
         left: '50vw',
-        width: 0
+        width: '0'
     });
-    const [selectedMediaX, setSelectedMediaX] = useState<any>();
-    const [selectedMediaType, setSelectedMediaType] = useState<string>("");
-    const [myList, setMyList] = useState<any>([]);
+    const [modalUpscaled, setModalUpscaled] = useState<boolean>(false);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
+    
+    const rows: {request: string; slogan: string; type?: string;}[] =  [
+        {
+            request:   'fetchTrendingAll',
+            slogan:     'Trending now'
+        },
+        {
+            request:    'fetchActionMovies',
+            slogan:     'Action Movies',
+            type:       'movie'
+        },
+        {
+            request:    'fetchComedyTVShows',
+            slogan:     'Comedy TV Shows',
+            type:       'tv'
+        },
+        {
+            request:   'fetchHistoryMovies',
+            slogan:     'History Movies',
+            type:       'movie'
+        },
+        {
+            request:    'fetchMisteryTVShows',
+            slogan:     'Mystery TV Shows',
+            type:       'tv'
+        },
+        {
+            request:    'fetchSinceFictionMovies',
+            slogan:     'Science Fiction Movies',
+            type:       'movie'
+        },
+        {
+            request:    'fetchWarAndPoliticsTVShows',
+            slogan:     'War & Politics TV Shows',
+            type:       'tv'
+        }
+
+    ]
 
     useEffect(() => {
-        document.title = 'Your Entertainment Journey Starts Here'
+        document.title = 'Your Entertainment Journey Starts Here';
     }, [])
 
     return (
         <>
             <Header />
 
-            <SectionHero request={requests.fetchTrendingAll} slogan="Trending now" setSelectedMediaX1={setSelectedMediaX} setUpscaled={setIsModalUpscaled} setSelectedMediaTypeX={setSelectedMediaType} />
+            <SectionHero
+                request={requests.fetchTrendingAll}
+                slogan="Trending now"
+                setActiveMedia={setActiveMedia}
+                setActiveMediaType={setActiveMediaType}
+                setModalUpscaled={setModalUpscaled}
+            />
+
             <section className="flex flex-col gap-y-12 relative -mt-56 z-10 overflow-x-hidden">
-                <Row request={requests.fetchTrendingAll} slogan="Trending now" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
-                <Row request={requests.fetchActionMovies} slogan="Action Movies" type="movie" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
-                <Row request={requests.fetchComedyTVShows} slogan="Comedy TV Shows" type="tv" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
-                <Row request={requests.fetchHistoryMovies} slogan="History Movies" type="movie" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
-                <Row request={requests.fetchMisteryTVShows} slogan="Mystery TV Shows" type="tv" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
-                <Row request={requests.fetchSinceFictionMovies} slogan="Science Fiction Movies" type="movie" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
-                <Row request={requests.fetchWarAndPoliticsTVShows} slogan="War & Politics TV Shows" type="tv" setSelectedMediaX1={setSelectedMediaX} setIsModalVisible={setIsModalVisible} setModalPosition={setModalPosition} setSelectedMediaTypeX={setSelectedMediaType} />
+                {
+                    rows.map((item, index) => {
+                        const {request, slogan, type} = item;
+                        return (
+                            <Row
+                                key={index}
+                                request={requests[request]}
+                                slogan={slogan}
+                                type={type}
+                                setActiveMedia={setActiveMedia}
+                                setActiveMediaType={setActiveMediaType}
+                                setModalPosition={setModalPosition}
+                                setModalVisible={setModalVisible}
+                            />
+                        )
+                    })
+                }
             </section>
-            <Modal x={selectedMediaX && selectedMediaX} isVisible={isModalVisible} isUpscaled={isModalUpscaled} setUpscaled={setIsModalUpscaled} position={modalPosition} type={selectedMediaType} myList={myList} setMyList={setMyList} />
+
+            <Modal
+                activeMedia={activeMedia && activeMedia}
+                activeMediaType={activeMediaType}
+                modalVisible={modalVisible}
+                modalUpscaled={modalUpscaled}
+                modalPosition={modalPosition}
+                setModalUpscaled={setModalUpscaled}
+            />
 
             <Footer />
         </>
