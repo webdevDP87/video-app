@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden
+}
+
+body {
+    @apply
+    bg-neutral-900
+    font-normal
+    text-neutral-200
+}
+
+.App {
+    @apply flex min-h-screen bg-sky-50;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    @apply
+    opacity-0
+    absolute
+    bottom-0
+    cursor-pointer
+    flex
+    items-center
+    justify-center
+    text-neutral-300
+    transition-all
+    h-auto
+    top-0
+    m-0
+    w-[4.5rem]
+    text-2xl
+    font-bold
+    duration-500
+    hover:text-white
+    hover:bg-neutral-950/50
+    z-30
+    group-hover:opacity-100
+}
+
+.swiper-button-prev {
+    @apply
+    opacity-0
+    -left-20
+    rounded-r-md
+    group-hover:opacity-100
+}
+
+.swiper-button-next {
+    @apply
+    opacity-0
+    -right-20
+    rounded-l-md
+    group-hover:opacity-100
+}
+
+.swiper-button-prev:after, .swiper-button-next:after {
+    font-family: 'swiper-icons';
+    font-size: var(--swiper-navigation-size);
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+}
+
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+    content: 'prev';
+}
+
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+    content: 'next';
+}
+
+.swiper-pagination {
+    @apply
+    flex
+    gap-0.5
+    !w-auto
+    absolute
+    opacity-0
+    right-0
+    -top-10
+    transition-opacity
+    duration-500
+    pointer-events-none
+    select-none
+    group-hover:opacity-100
+}
+
+.swiper-pagination-bullet {
+    @apply
+    block
+    cursor-pointer
+    h-0.5
+    w-2
+    bg-white/40
+    transition-colors
+    hover:bg-white/60
+    duration-500
+    even:hidden
+}
+
+.swiper-pagination-bullet-active {
+    @apply
+    bg-white/80
+}
