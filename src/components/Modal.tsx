@@ -132,14 +132,15 @@ export const Modal = (props: selectedMediaProps) => {
                                         <NavLink
                                             to={`/watch/${mediaURL}`}
                                             state={{ title: activeMedia.title || activeMedia.name, fetchVideosUrl: fetchVideosUrl }}
-                                            className="text-neutral-900 w-7 h-7 flex items-center justify-center bg-white rounded-full transition-colors duration-300 hover:bg-neutral-300 hover:border-white"
+                                            className="text-neutral-900 w-7 h-7 flex items-center justify-center bg-white rounded-full transition-colors duration-300 hover:bg-neutral-300 hover:border-white relative"
                                         >
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-400 opacity-25"></span>
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                                                 <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
                                             </svg>
                                         </NavLink>
                                         <button
-                                            className="text-white w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-full transition-colors duration-300 hover:border-white hover:bg-neutral-800"
+                                            className="pointer-events-none opacity-50 text-white w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-full transition-colors duration-300 hover:border-white hover:bg-neutral-800"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +154,7 @@ export const Modal = (props: selectedMediaProps) => {
                                             </svg>
                                         </button>
                                         <button
-                                            className="text-white w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-full transition-colors duration-300 hover:bg-neutral-800"
+                                            className="pointer-events-none opacity-50 text-white w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-full transition-colors duration-300 hover:bg-neutral-800"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -169,8 +170,9 @@ export const Modal = (props: selectedMediaProps) => {
                                     <div className="flex gap-x-2">
                                         <button
                                             onClick={() => setModalUpscaled((modalUpscaled: boolean) => !modalUpscaled)}
-                                            className="text-white w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-full transition-colors duration-300 hover:border-white hover:bg-neutral-800"
+                                            className="text-white w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-full transition-colors duration-300 hover:border-white hover:bg-neutral-800 relative"
                                         >
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neutral-400 opacity-25"></span>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 fill="none"

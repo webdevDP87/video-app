@@ -8,7 +8,7 @@ import 'swiper/css';
 import { Card } from '../components/Card';
 
 type RowProps = {
-    request: any;
+    request: string;
     slogan: string;
     type?: string;
     setActiveMedia: any;

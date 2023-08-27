@@ -14,7 +14,7 @@ function App() {
 
     <QueryClientProvider client={client}>
 
-      <Router basename='/video-app'>
+      <Router>
 
         {/* <Header /> */}
 
